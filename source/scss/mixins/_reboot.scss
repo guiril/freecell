@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input {
+  border: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}

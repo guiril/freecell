@@ -1,0 +1,159 @@
+@import 'mixins/reset';
+@import 'mixins/reboot';
+@import 'helpers/variables';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: $font-family;
+}
+
+.wrapper {
+  position: relative;
+  height: 100%;
+  min-width: 1280px;
+  min-height: 800px;
+  background-color: #2F221A;
+  background-image: url(../images/bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 35px;
+  margin-bottom: 30px;
+  &-logo {
+    position: relative;
+    width: 366px;
+    padding: 6px 17px 8px 89px;
+    background-color: #000000;  
+    img {
+      width: 47px;
+      display: inline-block;
+    }
+    span {
+      display: inline-block;
+      vertical-align: 6px;
+      margin-left: 5px;
+      font-size: 25px;
+      color: #E7BB00;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 10px;
+      bottom: -5px;
+      left: 0;
+      border: 2px solid #000000;
+    }
+  }
+  &-settings {
+    display: flex;
+    align-items: center;
+    a {
+      display: block;
+      img {
+        width: 40px;
+      }
+    }
+    span {
+      margin-right: 14px;
+      margin-left: 14px;
+      font-size: 20px;
+      color: #FFFFFF;
+    }
+  }
+  &-score {
+    display: flex;
+    align-items: center;
+    margin-right: 84px;
+    img {
+      width: 37px;
+      margin-right: 8px;
+    }
+    span {
+      font-size: 20px;
+      color: #FFFFFF;
+    }
+  }
+}
+
+.play-area {
+  width: 1280px;
+  padding: 30px 85px 16px;
+  margin: 0 auto;
+  .play-area-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.play-area-temp,
+.play-area-done {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  .card-wrap {
+    width: calc((100% - 72px) / 4);
+    height: 145px;
+    margin-right: 24px;
+    border: 2px solid rgba(#EDEDED, .3);
+    border-radius: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.play-area-done {
+  margin-left: 87px;
+  .card-wrap {
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center center;
+    &:nth-child(1) {
+      background-image: url(../images/card-heart.png);
+    }
+    &:nth-child(2) {
+      background-image: url(../images/card-club.png);
+    }
+    &:nth-child(3) {
+      background-image: url(../images/card-diamond.png);
+    }
+    &:nth-child(4) {
+      background-image: url(../images/card-spade.png);
+    }
+  }
+}
+
+.bg {
+  position: absolute;
+  right: 0;
+  bottom: -45px;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  font-size: 0;
+  &-images {
+    display: inline-block;
+    text-align: center;
+    span {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-size: 15px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      }
+    img {
+      display: inline-block;
+    }
+  }
+}
