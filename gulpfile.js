@@ -1,29 +1,47 @@
-var gulp = require('gulp')
-var autoprefixer = require('autoprefixer')
-var $ = require('gulp-load-plugins')()
+const gulp = require('gulp')
+const autoprefixer = require('autoprefixer')
+const $ = require('gulp-load-plugins')()
 
-gulp.task('pug', function buildHTML () {
-  return gulp.src('./source/**/!(_)*.pug')
+var paths = {
+  buildHTML: {
+    src: './source/**/!(_)*.pug',
+    dest: './public'
+  },
+  styles: {
+    src: './source/scss/**/*.scss',
+    dest: './public/css'
+  }
+}
+
+function buildHTML () {
+  return gulp.src(paths.buildHTML.src)
     .pipe($.plumber())
     .pipe($.pug({
       pretty: true
     }))
-    .pipe(gulp.dest('./public'))
-})
+    .pipe(gulp.dest(paths.buildHTML.dest))
+}
 
-gulp.task('sass', function () {
+function styles () {
   var plugins = [
     autoprefixer()
   ]
-  return gulp.src('./source/scss/**/*.scss')
+  return gulp.src(paths.styles.src)
     .pipe($.sass().on('error', $.sass.logError))
     .pipe($.postcss(plugins))
-    .pipe(gulp.dest('./public/css'))
-})
+    .pipe(gulp.dest(paths.styles.dest))
+}
 
-gulp.task('watch', function () {
-  gulp.watch('./source/**/*.pug', ['pug'])
-  gulp.watch('./source/scss/**/*.scss', ['sass'])
-})
+function watch () {
+  gulp.watch(paths.buildHTML.src, buildHTML)
+  gulp.watch(paths.styles.src, styles)
+}
 
-gulp.task('default', ['pug', 'sass', 'watch'])
+var build = gulp.series(watch, gulp.parallel(buildHTML, styles))
+
+exports.buildHTML = buildHTML
+exports.styles = styles
+exports.watch = watch
+exports.build = build
+
+exports.default = build
